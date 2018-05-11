@@ -1,0 +1,28 @@
+<div class="container" style="width: 1500px; height: 600px;">
+    <h3>Normal with Pagination</h3>
+    <ag-grid-angular #agGrid style="width: 1500px; height: 500px;" 
+        class="ag-fresh" 
+        [gridOptions]="gridOptions"
+        [columnDefs]="columnDefs" 
+        [rowData]="pageditems" 
+        rowSelection="multiple"> </ag-grid-angular>
+    <div style="float:right">
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <a (click)="setPage(1)">First</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a (click)="setPage(pager.totalPages)">Last</a>
+            </li>
+        </ul>
+    </div>
+</div>
